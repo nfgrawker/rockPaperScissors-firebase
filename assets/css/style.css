@@ -1,0 +1,29 @@
+body{
+  background-image: url(../images/hex.png);
+}
+.banner{
+  background-image: url(../images/RPS.jpg);
+  background-size:auto;
+}
+.bgcolorblack{
+  color: white;
+  background-color: black;
+}
+.imagebox{
+  height:300px;
+  width:300px;
+  background-color: white;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.chatbox{
+  height: 300px;
+  background-color: white;
+}
+.form-control{
+  width: 500px;
+}
