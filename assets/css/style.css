@@ -1,4 +1,5 @@
 body{
+  z-index: 2;
   background-image: url(../images/hex.png);
 }
 .banner{
@@ -14,6 +15,10 @@ body{
   width:300px;
   background-color: white;
 }
+.image{
+  height: 300px;
+  width: 300px;
+}
 .left{
   float: left;
 }
@@ -21,12 +26,25 @@ body{
   float: right;
 }
 .chatbox{
-  height: 300px;
+  height: 250px;
   background-color: white;
+  overflow:hidden;
 }
 .form-control{
   width: 500px;
 }
 p{
+  z-index: -1;
   margin-bottom: .5rem;
+}
+.gobutton{
+  bottom: 40px;
+  left: 47%;
+  position: absolute;
+}
+.resetbutton{
+  bottom: 0px;
+  left: 46.18%;
+  position: absolute;
+}
 }

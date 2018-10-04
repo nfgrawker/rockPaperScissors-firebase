@@ -14,32 +14,46 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 m-2">
+    <div class="col-md-12 m-2 text-center">
       <div class="imagebox left border border-secondary">
+        <img src="./assets/images/qmark.png" alt="qmark" class="image player1image">
       </div>
-      <div class="btn-group btn-group-toggle left m-1" data-toggle="buttons">
-        <label class="btn btn-secondary">
-          <input type="radio" name="player1" id="option1" value="rock" autocomplete="off" > Rock
+      <div class="btn-group btn-group-toggle left m-1 player1choice" data-toggle="buttons">
+        <label class="btn btn-secondary player1" value = "rock">
+          <input type="radio"> Rock
         </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="player1" id="option2" value="paper"autocomplete="off"> Paper
+        <label class="btn btn-secondary player1" value = "paper">
+          <input type="radio"> Paper
         </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="player1" id="option3" value="scissors"autocomplete="off"> Scissors
+        <label class="btn btn-secondary player1" value = "scissors">
+          <input type="radio"> Scissors
         </label>
+      </div>
+      <div class="thinkingtext1 left">
+        <h2>Player 1 has chosen!</h2>
       </div>
       <div class="imagebox right border border-secondary">
+        <img src="./assets/images/qmark.png" alt="qmark" class="image player2image">
       </div>
-      <div class="btn-group btn-group-toggle right m-1" data-toggle="buttons">
-        <label class="btn btn-secondary">
-          <input type="radio" name="player2" id="option1" value="rock" autocomplete="off" > Rock
+      <div class="btn-group btn-group-toggle right m-1 player2choice" data-toggle="buttons">
+        <label class="btn btn-secondary player2" value = "rock">
+          <input type="radio"> Rock
         </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="player2" id="option2" value="paper"autocomplete="off"> Paper
+        <label class="btn btn-secondary player2" value = "paper">
+          <input type="radio"> Paper
         </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="player2" id="option3" value="scissors"autocomplete="off"> Scissors
+        <label class="btn btn-secondary player2" value = "scissors">
+          <input type="radio"> Scissors
         </label>
+      </div>
+      <div class="thinkingtext2 right">
+        <h2>Player 2 has chosen!</h2>
+      </div>
+      <div class="gobutton">
+        <button class="btn btn-success" name="button">Go!</button>
+      </div>
+      <div class="resetbutton">
+        <button class="btn btn-danger" name="button">Reset!</button>
       </div>
       </div>
     </div>
@@ -51,7 +65,7 @@
       <div class="row">
         <div class="col-md-12 m-2">
           <input class="form-control chattext left" type="text" placeholder="Type Chat Here!">
-          <button class="btn btn-danger right clear"type="button" name="button">Clear</button>
+          <button class="btn btn-danger right clear"type="button" name="button">Clear all chat</button>
         </div>
 
       </div>
