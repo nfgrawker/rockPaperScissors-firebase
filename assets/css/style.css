@@ -28,7 +28,7 @@ body{
 .chatbox{
   height: 250px;
   background-color: white;
-  overflow:hidden;
+  overflow-y: scroll
 }
 .form-control{
   width: 500px;
