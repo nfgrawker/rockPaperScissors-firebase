@@ -15,6 +15,11 @@ var player1choice = ""
 var player2choice = ""
 var player1time = 0
 var player2time = 0
+function sleep(ms) {
+    console.log("sleeping")
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 $('.chattext').keypress(function(event){
       var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -36,23 +41,34 @@ database.ref("/chat").orderByChild("dateAdded").limitToLast(8).on("child_added",
 database.ref("/player1").on("value",function(snapshot){
   player1choice = snapshot.val().player1
   player1time = snapshot.val().dateAdded
-  $(".player1choice").hide()
-  $(".thinkingtext1").show()
-
+  if (snapshot.val().player1 != "") {
+    $(".player1choice").hide()
+    $(".thinkingtext1").show()
+  }
 })
 database.ref("/player2").on("value",function(snapshot){
   player2choice = snapshot.val().player2
   player2time = snapshot.val().dateAdded
-  $(".player2choice").hide()
-  $(".thinkingtext2").show()
-  console.log(player2choice)
-  console.log(player2time)
+  if (snapshot.val().player2 != "") {
+    $(".player2choice").hide()
+    $(".thinkingtext2").show()
+  }
 
 })
-  $(".clear").on("click",function() {
-    database.ref("/chat").remove()
-    $(".chatbox").empty()
-    $(".chatbox").append("<h2 class ='temp'>Chat Appears Here!</h2>")
+database.ref("/reset").on("value",function(snapshot){
+  if(snapshot.val().reset !== "reset"){
+    return 0
+  }
+  else{
+    reset()
+  }
+})
+
+
+$(".clear").on("click",function() {
+  database.ref("/chat").remove()
+  $(".chatbox").empty()
+  $(".chatbox").append("<h2 class ='temp'>Chat Appears Here!</h2>")
   })
 $("label.player1").on("click",function(){
   var player1choice = $(this).attr("value")
@@ -68,31 +84,48 @@ $("label.player2").on("click",function(){
   player2:player2choice,
   dateAdded:firebase.database.ServerValue.TIMESTAMP
   })
-  console.log(player2choice)
 })
 $(".resetbutton").on("click",function(){
-  database.ref("/player1").remove()
-  database.ref("/player2").remove()
-  player1choice = ""
-  player2choice = ""
-  $(".player2choice").show()
-  $(".thinkingtext2").hide()
-  $(".player1choice").show()
-  $(".thinkingtext1").hide()
-  $(".player2image").attr("src","./assets/images/qmark.png")
-  $(".player1image").attr("src","./assets/images/qmark.png")
-
-
-
+  database.ref("/reset").set({
+    reset : "reset"
+  })
+  database.ref("/player1").set({
+    player1: ""
+  })
+  database.ref("/player2").set({
+    player2: ""
+  })
 
   })
 $(".gobutton").on("click",function(){
-  game()
+  database.ref("/game").set({
+    game: "game"
+  })
+
 })
-function game(){
-  console.log(player1choice)
-  console.log(player2choice)
+database.ref("/game").on("value",function(snapshot){
+    console.log("game")
+  if (snapshot.val().game != "game"){
+    return 0
+  }
+  else{
+    game()
+  }
+})
+async function game(){
   if(player1choice != "" || player2choice != ""){
+    $(".chatbox").prepend("<p>Three!<p>")
+    $(".player1image").attr("src","./assets/images/three.png")
+    $(".player2image").attr("src","./assets/images/three.png")
+    await sleep(1000)
+    $(".chatbox").prepend("<p>Two!<p>")
+    $(".player1image").attr("src","./assets/images/two.png")
+    $(".player2image").attr("src","./assets/images/two.png")
+    await sleep(1000)
+    $(".chatbox").prepend("<p>One!<p>")
+    $(".player1image").attr("src","./assets/images/one.png")
+    $(".player2image").attr("src","./assets/images/one.png")
+    await sleep(1000)
     if (player1choice != player2choice){
       if (player1choice == "paper") {
         $(".player1image").attr("src","./assets/images/paper.jpg")
@@ -148,4 +181,18 @@ function game(){
   else{
     return 0
   }
+}
+function reset(){
+  $(".player2choice").show()
+  $(".thinkingtext2").hide()
+  $(".player1choice").show()
+  $(".thinkingtext1").hide()
+  $(".player2image").attr("src","./assets/images/qmark.png")
+  $(".player1image").attr("src","./assets/images/qmark.png")
+  database.ref("/reset").set({
+    reset : "",
+  })
+  database.ref("/game").set({
+    game : ""
+  })
 }
