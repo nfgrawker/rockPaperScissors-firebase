@@ -34,7 +34,7 @@ $('.chattext').keypress(function(event){
   });
 
 database.ref("/chat").orderByChild("dateAdded").limitToLast(8).on("child_added", function(snapshot) {
-  $(".chatbox").prepend("<p>"+snapshot.val().chat+"</p>");
+  $(".chatbox").append("<p>"+snapshot.val().chat+"</p>");
   $(".temp").remove()
 
 });
