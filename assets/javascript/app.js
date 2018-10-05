@@ -68,7 +68,7 @@ database.ref("/reset").on("value",function(snapshot){
 $(".clear").on("click",function() {
   database.ref("/chat").remove()
   $(".chatbox").empty()
-  $(".chatbox").append("<h2 class ='temp'>Chat Appears Here!</h2>")
+  $(".chatbox").prepend("<h2 class ='temp'>Chat Appears Here!</h2>")
   })
 $("label.player1").on("click",function(){
   var player1choice = $(this).attr("value")
